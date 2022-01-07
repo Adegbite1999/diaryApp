@@ -37,7 +37,7 @@ const signup = async (req, res) => {
 
     } catch (error) {
         console.error(error)
-        res.status(500).json({ message: "Server Error" })
+        res.status(401).json({ message: "unauthorized!" })
     }
 
 
@@ -73,23 +73,11 @@ const signin = async (req, res) => {
         return res.status(200).json({ status: 'success', data: { token: token } });
     } catch (error) {
         console.error(error)
-        res.status(500).json({ message: 'Server error' })
+        res.status(401).json({ message: 'unauthorized!' })
     }
 }
 
-// const isVerified =  async (req, res) => {
-//     try {
-//         res.json({ message: "Welcome to my dashboard!" })
-//     } catch (error) {
-//         console.error(error)
-//         res.status(500).json({message: 'Server error'})
-//     }
-// }
 
-
-// user dashboard
-
-// Fetch user dashboard information
 
 const dashboard = async (req, res) => {
     try {

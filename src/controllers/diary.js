@@ -14,7 +14,7 @@ const getAllEntry = async (req, res) => {
         }
         res.status(200).json({ status: 'success', data: data.rows })
     } catch (error) {
-        return res.status(500).json({ message: error })
+        return res.status(401).json({ message: error })
     }
 }
 
@@ -30,7 +30,7 @@ const getOneEntry = async (req, res) => {
         return res.status(200).json({ status: 'success', data: data.rows[0] })
     } catch (error) {
 
-        return res.status(500).json({ message: error })
+        return res.status(401).json({ message: error })
     }
 }
 
@@ -44,7 +44,7 @@ const addNewEntry = async (req, res) => {
         return res.status(201).json({ status: 'success', data: { id: data.rows[0].id, message: "entry successfully created", title: data.rows[0].title, description: data.rows[0].description } })
     } catch (error) {
 
-        return res.status(500).json({ message: error })
+        return res.status(401).json({ message: error })
     }
 }
 
@@ -64,7 +64,7 @@ const updateEntry = async (req, res) => {
         return res.status(201).json({ status: 'success', data: { message: 'entry successfully edited', id: data.rows[0].id, title: data.rows[0].title, description: data.rows[0].description } })
     } catch (error) {
 
-        return res.status(500).json({ message: error })
+        return res.status(401).json({ message: error })
     }
 }
 // DELETE => delete entry by id
@@ -79,9 +79,9 @@ const deleteEntry = async (req, res) => {
         }
         return res.status(201).json({ status: 'success', data: { message: 'entry successfully deleted' } })
     } catch (error) {
-        return res.status(500).json({ message: error })
+        return res.status(401).json({ message: error })
     }
 }
 
 
-module.exports = { addNewEntry, getAllEntry, getOneEntry, updateEntry, deleteEntry, }
+module.exports = { addNewEntry, getAllEntry, getOneEntry, updateEntry, deleteEntry }

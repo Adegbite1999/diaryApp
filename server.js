@@ -12,9 +12,14 @@ const path = require('./src/routes/index');
 
 app.use('/api/v1', path)
 
-app.listen(process.env.PORT, () => {
-console.log(`Server Listening On Port: ${port}`);
-})
+// app.listen(process.env.PORT, () => {
+// console.log(`Server Listening On Port: ${port}`);
+// })
+if(require.main === module){
+    app.listen(process.env.PORT, () =>
+      console.log(` App listening on port ${process.env.PORT}!`),
+    );
+  }
 
 module.exports = app;
 
