@@ -77,7 +77,7 @@ const deleteEntry = async (req, res) => {
         if (!rows[0]) {
             return res.status(400).res.json({ message: "Entry not found" })
         }
-        return res.status(201).json({ status: 'success', data: { message: 'entry successfully deleted' } })
+        return res.status(200).json({ status: 'success', data: { message: 'entry successfully deleted' } })
     } catch (error) {
         return res.status(401).json({ message: error })
     }
