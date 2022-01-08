@@ -5,7 +5,7 @@ const app = require('../../server');
 // const expect = chai.expect();
 const should = chai.should();
 var token;
-var id = '4c9d97ca-7cc5-4b4b-a91d-c68ff39d6e75'
+var id;
 
 chai.use(chaiHttp);
 // var log = console.log()
@@ -36,7 +36,7 @@ describe("First Test", function () {
     });
 
     it('Create a new diary entry', function (done) {
-        let payload = { title: 'Hello', description: 'This is my first entry.' }
+        let payload = { title: 'Hello world', description: 'This is a new entry' }
         chai.request(app)
             .post('/api/v1/entries')
             .set('token', `${token}`)
@@ -45,6 +45,7 @@ describe("First Test", function () {
                 expect(res).to.have.status(201)
                 expect(res.body).to.have.property('status')
                 expect(res.body).to.have.property('data')
+                id = res.body.data.id;
                 done()
             })
     });
