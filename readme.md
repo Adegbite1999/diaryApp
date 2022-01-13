@@ -1,1 +1,1 @@
-This is a diary app
+[![Build Status](https://app.travis-ci.com/Adegbite1999/diaryApp.svg?branch=master)](https://app.travis-ci.com/Adegbite1999/diaryApp)

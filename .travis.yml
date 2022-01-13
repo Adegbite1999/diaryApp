@@ -1,0 +1,14 @@
+deploy:
+  provider: heroku
+  api_key:
+    secure: process.env.HEROKU_TOKEN
+language: node_js
+node_js:
+  - 'stable'
+install: npm install
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database diaryapp;' -U postgres
+script: npm test
+after_success: npm run coverage
