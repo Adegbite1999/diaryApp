@@ -9,6 +9,21 @@ var id;
 chai.use(chaiHttp);
 // var log = console.log()
 describe("First Test", function () {
+    it("it should signup a user", function (done) {
+        chai.request(app)
+            .post('/api/v1/auth/signup')
+            .send({
+                firstname:"Adegbite",
+                lastname: "Ademola kelvin",
+                email: 'adegbiteademola1999@gmail.com',
+                password: 'Update#0499'
+            })
+            .end(function (err, res) {
+                expect(res).to.have.status(201)
+                expect(res.body).to.have.property('data').have.property('token')
+                done();
+            })
+    });
     it("it should return a token", function (done) {
         chai.request(app)
             .post('/api/v1/auth/signin')
