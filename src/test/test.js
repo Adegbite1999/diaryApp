@@ -2,7 +2,6 @@ const { expect } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../../server');
-// const expect = chai.expect();
 const should = chai.should();
 var token;
 var id;
@@ -12,7 +11,8 @@ chai.use(chaiHttp);
 describe("First Test", function () {
     it("it should return a token", function (done) {
         chai.request(app)
-            .post('/api/v1/auth/signin').send({
+            .post('/api/v1/auth/signin')
+            .send({
                 email: 'adegbiteademola1999@gmail.com',
                 password: 'Update#0499'
             })
@@ -20,10 +20,8 @@ describe("First Test", function () {
                 expect(res).to.have.status(200)
                 expect(res.body).to.have.property('data').have.property('token')
                 token = res.body.data.token;
-                console.log(token)
                 done();
             })
-            console.log(token)
     });
 
     it('GET user profile', function(done) {
