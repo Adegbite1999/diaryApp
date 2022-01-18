@@ -9,9 +9,9 @@ const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_P
 const pool = new Pool({
     connectionString: isTest ? process.env.DATABASE_TEST :
         connectionString,
-     ssl: {
-        rejectUnauthorized: false
-    }
+    //  ssl: {
+    //     rejectUnauthorized: false
+    // }
 })
 pool.connect(() =>{
     console.log('connected')
