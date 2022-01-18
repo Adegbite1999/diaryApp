@@ -13,15 +13,17 @@ describe("First Test", function () {
     it("it should return a token", function (done) {
         chai.request(app)
             .post('/api/v1/auth/signin').send({
-                email: 'adegbite@gmail.com',
+                email: 'adegbiteademola1999@gmail.com',
                 password: 'Update#0499'
             })
             .end(function (err, res) {
                 expect(res).to.have.status(200)
                 expect(res.body).to.have.property('data').have.property('token')
                 token = res.body.data.token;
+                console.log(token)
                 done();
             })
+            console.log(token)
     });
 
     it('GET user profile', function(done) {

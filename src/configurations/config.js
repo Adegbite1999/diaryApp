@@ -13,5 +13,8 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 })
+pool.connect(() =>{
+    console.log('connected')
+})
 module.exports = pool;
 
