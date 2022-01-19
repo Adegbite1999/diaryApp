@@ -9,7 +9,8 @@ const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_P
 const connectionTest = `postgresql://${process.env.DATABASE_TEST_USER}:${process.env.DATABASE_TEST_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DATABASE_TEST_USER}`;
 
 const pool = new Pool({
-   connectionString: isTest? connectionTest : connectionString
+   connectionString: "postgres://cavdcjmy:OfbuFgoKWS6a3OlQEC0odLIs7W_s0bWB@abul.db.elephantsql.com/cavdcjmy"
+  //  isTest? connectionTest : connectionString
   })
 pool.connect(() =>{
     console.log('connected')
