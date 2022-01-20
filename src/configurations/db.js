@@ -14,14 +14,14 @@ password VARCHAR(250) NOT NULL,
 created_on TIMESTAMP DEFAULT NOW()
 )`;
 pool.query(userCreateQuery)
-.then((response)=> {
-    console.log(response);
-    pool.end(); 
-})
-.catch((error)=>{
-    console.log(error);
-    pool.end();
-})
+// .then((response)=> {
+//     console.log(response);
+//     pool.end(); 
+// })
+// .catch((error)=>{
+//     console.log(error);
+//     pool.end();
+// })
 };
 
 const createDiaryTable =  () => {
@@ -37,50 +37,53 @@ diary(
 )`;
 
 pool.query(diaryCreateQuery)
-.then((response) =>{
-    console.log(response);
-    pool.end();
-})
-.catch((error) =>{
-    console.log(error);
-    pool.end();
-})
+// .then((response) =>{
+//     console.log(response);
+//     pool.end();
+// })
+// .catch((error) =>{
+//     console.log(error);
+//     pool.end();
+// })
 };
 
-const dropUserTable = () =>{
+ const dropUserTable = () =>{
     const userDropQuery = 'DROP TABLE IF EXISTS users'
     pool.query(userDropQuery)
-    .then((response)=>{
-        console.log(response);
-        pool.end();
-    })
-    .catch((error)=>{
-        console.log(error)
-        pool.end();
-    })
+    // .then((response)=>{
+    //     console.log(response);
+    //     pool.end();
+    // })
+    // .catch((error)=>{
+    //     console.log(error)
+    //     pool.end();
+    // })
 }
 
 const dropDiaryTable = () =>{
     const diaryDropQuery = 'DROP TABLE IF EXIST diary'
     pool.query(diaryDropQuery)
-    .then((response)=>{
-        console.log(response);
-        pool.end();
-    })
-    .catch((error)=>{
-        console.log(error)
-        pool.end();
-    })
+    // .then((response)=>{
+    //     console.log(response);
+    //     pool.end();
+    // })
+    // .catch((error)=>{
+    //     console.log(error)
+    //     pool.end();
+    // })
 }
 // CREATE ALL TABLES
 const createAllTable = () =>{
-    createUserTable,
-    createDiaryTable
+   createUserTable()
+   createDiaryTable()
+//    pool.end() 
+    
 }
 // DROP TABLES
  const dropAllTable = () =>{
-     dropUserTable,
-     dropDiaryTable
+     dropUserTable()
+     dropDiaryTable()
+    //  pool.end()
  }
 
 module.exports = {createAllTable, dropAllTable}
