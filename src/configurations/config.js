@@ -11,7 +11,6 @@ const config = {
 const pool = new Pool(config)
 pool.connect(() =>{
   console.log('connected');
-  console.log(config);
 })
 module.exports = pool;
 
