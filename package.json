@@ -6,8 +6,7 @@
   "scripts": {
     "test": "mocha 'src/test/test.js'  --timeout 10000 --exit",
     "start": "nodemon server.js",
-    "migrate": "node ./src/migrations/index.js",
-    "coverage": "mocha --coverage && cat ./coverage/lcov.info | coveralls"
+    "migrate": "node ./src/migrations/index.js"
   },
   "repository": {
     "type": "git",
