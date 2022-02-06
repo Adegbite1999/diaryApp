@@ -9,7 +9,10 @@ const jwtGenerator = require('../utils/jwtGenerator');
 const signup = async (req, res) => {
     try {
         // 1. Destructure request body
-        const { firstname, lastname, email, password } = req.body;
+        let { firstname, lastname, email, password } = req.body;
+        firstname = firstname.trim();
+        lastname = lastname.trim();
+        email = email.trim();
         // 2. validate there is no empty field
         if (!firstname || !lastname || !email || !password) {
             return res.status(400).json({ message: 'Missing Credentials!' })
@@ -22,7 +25,7 @@ const signup = async (req, res) => {
         // 4. Check if email already exist
         const userExist = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         if (userExist.rows.length !== 0) {
-            return res.status(401).json({ message: 'user already exist' });
+            return res.status(409).json({ message: 'user already exist' });
         }
         // 5. Hash password
         const salt = await bcrypt.genSalt(10);
@@ -37,7 +40,7 @@ const signup = async (req, res) => {
 
     } catch (error) {
         console.error(error)
-        res.status(401).json({ message: "unauthorized!" })
+        res.status(401).json({ message: "Register error, please try again." })
     }
 
 
@@ -46,7 +49,9 @@ const signup = async (req, res) => {
 const signin = async (req, res) => {
     try {
         // 1. Destructure
-        const { email, password } = req.body;
+        let { email, password } = req.body;
+        email = email.trim();
+        password = password.trim();
         //  2. validate there's no empty fields
         if (!email || !password) {
             return res.status(400).json({ message: 'Missing Credentials!' })
@@ -73,7 +78,7 @@ const signin = async (req, res) => {
         return res.status(200).json({ status: 'success', data: { token: token } });
     } catch (error) {
         console.error(error)
-        res.status(401).json({ message: 'unauthorized!' })
+        res.status(401).json({ message: 'Login failed, try again!' })
     }
 }
 

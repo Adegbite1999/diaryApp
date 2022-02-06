@@ -39,7 +39,13 @@ const getOneEntry = async (req, res) => {
 const addNewEntry = async (req, res) => {
     try {
         const Query = "INSERT INTO diary (title, description, user_id) VALUES($1, $2, $3) RETURNING *"
-        const value = [req.body.title, req.body.description, req.user]
+        let {title, description} = req.body;
+        title = title.trim();
+        description = description.trim();
+        if(!title || !description){
+            return res.status(400).json({ message: 'Input fields cannot be empty' });
+        }
+        const value = [title, description, req.user]
         const data = await pool.query(Query, value);
         return res.status(201).json({ status: 'success', data: { id: data.rows[0].id, message: "entry successfully created", title: data.rows[0].title, description: data.rows[0].description } })
     } catch (error) {
